@@ -43,12 +43,16 @@ export default function Header() {
 
         {/* Desktop Auth Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="sm">
-            Sign In
-          </Button>
-          <Button size="sm">
-            Start Free
-          </Button>
+          <Link href="/login">
+            <Button variant="ghost" size="sm">
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button size="sm">
+              Start Free
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -97,12 +101,16 @@ export default function Header() {
               </Link>
             </nav>
             <div className="flex flex-col space-y-2 pt-4 border-t">
-              <Button variant="ghost" size="sm" className="justify-start">
-                Sign In
-              </Button>
-              <Button size="sm" className="justify-start">
-                Start Free
-              </Button>
+              <Link href="/login">
+                <Button variant="ghost" size="sm" className="justify-start w-full">
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button size="sm" className="justify-start w-full">
+                  Start Free
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Github, Linkedin, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -12,6 +13,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const { signIn, signInWithGoogle, signInWithLinkedIn } = useAuth()
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,6 +22,7 @@ export default function LoginForm() {
 
     try {
       await signIn(email, password)
+      router.push('/onboarding')
     } catch (error: any) {
       setError(error.message)
     } finally {

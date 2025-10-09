@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Github, Linkedin, Mail, Lock, Eye, EyeOff, User } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function SignupForm() {
   const [email, setEmail] = useState('')
@@ -15,6 +16,7 @@ export default function SignupForm() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const { signUp, signInWithGoogle, signInWithLinkedIn } = useAuth()
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,8 +37,15 @@ export default function SignupForm() {
     }
 
     try {
-      await signUp(email, password)
-      setSuccess('Check your email for the confirmation link!')
+      const { data, error } = await signUp(email, password)
+      if (error) throw error
+      
+      if (data.user && !data.user.email_confirmed_at) {
+        setSuccess('Check your email for the confirmation link!')
+      } else {
+        // If user is immediately confirmed (e.g., in development), redirect to onboarding
+        router.push('/onboarding')
+      }
     } catch (error: any) {
       setError(error.message)
     } finally {
