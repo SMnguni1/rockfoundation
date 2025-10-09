@@ -3,11 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --rock-gray: #4a5568;
+  --electric-blue: #3b82f6;
+  --rock-dark: #2d3748;
+  --rock-light: #f7fafc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-rock-gray: var(--rock-gray);
+  --color-electric-blue: var(--electric-blue);
+  --color-rock-dark: var(--rock-dark);
+  --color-rock-light: var(--rock-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +24,30 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --rock-light: #1a202c;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rock-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rock-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rock-dark);
 }
